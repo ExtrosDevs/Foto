@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foto</title>
+    {% load static %}
+
+</head>
+<body>
+    {{ request.session.userName }}
+    <form action="" method="GET" >
+        <input type="search" name="search" id="search">
+        <input type="submit"  value="search" x>
+    </form>
+    <div class="container">
+        {% for i in data %}
+        <a href="imageView/{{i.id}}"><img width="300" height="200" src="{{ i.image.url }}" alt=""></a>
+        {% endfor %}
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% if request.session.userName %}
+        <input type="submit" value="logout" name="logout">
+        {% else %}
+        <a href="login/">login</a>
+        {% endif %}
+    </form>
+
+
+</body>
+</html>

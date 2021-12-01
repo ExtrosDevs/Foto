@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body>
+    <button id="btn">getData </button>
+    
+    <div id="main"></   div>
+
+    <script>
+        let v  = document.getElementById("btn")
+        v.addEventListener('click', function(){
+            
+                let url = 'http://127.0.0.1:8000/api';
+                // let url = 'https://www.breakingbadapi.com/api/characters/2'
+                var req = new XMLHttpRequest();
+                req.open('GET', url)
+                req.onload = function(){
+                    let data = JSON.parse(req.responseText)
+
+                    document.getElementById('main').innerHTML = data.username
+
+                }
+                req.send();
+        })
+        
+    </script>
+</body>
+</html>

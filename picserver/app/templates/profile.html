@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img width="100" height="100" style="border-radius: 50%;" src="{{user.pic.url}}" alt="{{user.userName }}" srcset="">
+    <h3>userName : {{user.userName }}</h3>
+    <h4>email: {{user.userEmail}}</h4>
+    {% if request.session.userName  %}
+    <a href="../chatgen/{{user.userName }}">chat</a>
+    {% endif %}
+    
+</body>
+</html>

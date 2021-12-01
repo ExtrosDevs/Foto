@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+
+</head>
+<body>
+    <img width="720" height="480" src="{{ img.image.url }}" alt="">
+    <h1>{{ img.imageTitle }}</h1>
+    <a href="../profile/{{ img.user.userName }}"><h3>by : {{ img.user.userName   }}   </h3></a>
+    <span id="like"> likes: {{img.likes}}</span>
+    <p>{{ img.imageDesc }}  </p>
+    <form action="" name="ff"  id="form" method="post">
+        {% csrf_token %}
+        {% if request.session.userName %}
+        <input type="submit" value="like" id="send">
+        {% endif %}
+    </form>
+
+
+    
+    <script src="{% static 'script/jquery.js' %}"></script>
+    <script>
+    $.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+    $('#form').submit(function(e){
+        e.preventDefault();
+        $('#tx').val(0)
+        console.log( $('#tx').val())
+        var data = new FormData($('form').get(0))
+        $.ajax({
+            type:'POST',
+            url: 'http://127.0.0.1:8000/imageResponse/{{img.id}}',
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: data,
+        })
+       
+    })
+    </script>
+</body>
+</html>
