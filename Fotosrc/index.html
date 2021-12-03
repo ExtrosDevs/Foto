@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../css/main.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOTO a gallery website</title>
+</head>
+<script src="/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#search').hide();
+        $('.overlay-content').hide();
+
+    });
+</script>
+
+<body>
+    <div class="overlay">
+    </div>
+    <div class="overlay-content">
+        <p id="overlay-p">SampleText</p>
+
+        <input id="close-btn" type="button" value="Close">
+    </div>
+    <main>
+        <section id="search" class="search">
+            <h4>Search</h4>
+
+            <!--Search form-->
+            <form action="" method="get">
+                <input type="search" name="search" id="search">
+            </form>
+        </section>
+
+
+        <!-- Top navigation -->
+        <div class="topnav">
+
+            <!-- Centered link -->
+            <div class="topnav-centered">
+                <a id="home-btn" href="/" class="active">Home</a>
+                <a id="mobile-btn" href="#" class="active">Expand Menu</a>
+            </div>
+
+            <!-- Left-aligned links (default) -->
+            <a id="login-nav" href="/login.html">Login</a>
+            <a id="contact-btn" href="#contact">Contact</a>
+
+            <!-- Right-aligned links -->
+            <div class="topnav-right">
+                <a id="search-btn" href="#search">Search</a>
+                <a id="about-btn" href="#">About</a>
+            </div>
+
+        </div>
+        <main2>
+            <section class="left">
+                <div class="user">
+
+                    <!--make it so if the user is logged in, so the "login now" button 
+                        direct them to the dashborad =>(/profile.html)-->
+
+                    <img src="./images/avatarr.png" alt="#UserAvatar">
+                    <h3>#UserName</h3>
+                    <p>#UserType</p>
+                    <br>
+                    <a href="./login.html">Login now!</a>
+
+                </div>
+                <div class="links">
+                    <div class="link">
+                        <a href="./static.html">Popular</a>
+                    </div>
+                    <div class="link">
+                        <a href="#">Top rated</a>
+                    </div>
+                    <div class="link">
+                        <a href="#">Genres</a>
+                    </div>
+                </div>
+                <a href="/Pro.html">
+                    <div class="pro">
+                        <h5>Become A Pro User!</h2>
+                            <img src="./images/pro.png" alt="">
+                    </div>
+                </a>
+
+
+            </section>
+            <section class="right">
+                <!--Links are nor ready yet (waiting for good way for images form)-->
+                <section id="mobile-links" class="links">
+                    <div class="link">
+                        <a href="./static.html">Popular</a>
+                    </div>
+                    <div class="link">
+                        <a href="#">Top rated</a>
+                    </div>
+                    <div class="link">
+                        <a href="#">Genres</a>
+                    </div>
+                    </div>
+                    <a href="/Pro.html">
+                        <div style="margin-bottom: 50px;" class="pro">
+                            <h5>Become A Pro User!</h2>
+                                <img src="./images/pro.png" alt="">
+                        </div>
+                    </a>
+                </section>
+                <div class="recommended">
+                    <h2 id="titles">OUR PICKS !</h2>
+
+                    <!--Our picks are fixed, and we choose the winners that are put on
+                         the home screen, and ofc extra points-->
+
+                    <div class="pick-images">
+                        <img src="./images/land.jpg" alt="">
+                        <img id="center" src="./images/bg.jpg" alt="">
+                        <img src="./images/bg.jpg" alt="">
+                    </div>
+
+                </div>
+                <div class="latest">
+                    <h2 id="titles">Latest Photos</h2>
+                    <div class="latest-images">
+
+                        <!--Latest images form(idk wtf to do here)-->
+                        <form action="" method="get">
+
+                        </form>
+
+                        <a href="#photo-page">
+                            <img src="./images/bg.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/bg.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/bg.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/bg.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/land.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/bg.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/land.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/bg.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/bg.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/land.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/land.jpg" />
+                        </a>
+                        <a href="#photo-page">
+                            <img src="./images/bg.jpg" />
+                        </a>
+
+                    </div>
+
+                </div>
+            </section>
+            <section class="circle"></section>
+        </main2>
+    </main>
+
+    <button onclick="topFunction()" id="totop" title="Go to top">Top</button>
+
+<!--nothing to do with js mr.ahmad-->
+    <script>
+        $("#search-btn").click(function () {
+            $("#search").slideToggle("", function () {
+
+            });
+        });
+        $("#about-btn").click(function () {
+            $(".overlay").fadeToggle("", function () {});
+            $(".overlay-content").fadeToggle("", function () {});
+            document.getElementById("overlay-p").innerHTML =
+                "We are a photo hosting site, that offers a lot of free and premium photo lineup";
+        });
+        $("#contact-btn").click(function () {
+            $(".overlay").fadeToggle("", function () {});
+            $(".overlay-content").fadeToggle("", function () {});
+            document.getElementById("overlay-p").innerHTML = "Email: support@foto.com";
+        });
+        $("#close-btn").click(function () {
+            $(".overlay").fadeToggle("", function () {});
+            $(".overlay-content").fadeToggle("", function () {});
+        });
+        $("#mobile-btn").click(function () {
+            $("#login-nav").slideToggle("", function () {});
+            $("#contact-btn").slideToggle("", function () {});
+            $("#search-btn").slideToggle("", function () {});
+            $("#about-btn").slideToggle("", function () {});
+            $("#mobile-links").slideToggle("", function () {});
+            $(this).text($(this).text() == 'Expand Menu' ? 'Shrink Menu' : 'Expand Menu');
+
+        });
+
+
+        if ($(window).width() <= 600) {
+            $('#contact-btn').hide();
+            $('#about-btn').hide();
+            $('#search-btn').hide();
+            $('#mobile-links').hide();
+            $('#login-nav').hide();
+        }
+        if ($(window).width() > 600) {
+            $('#mobile-btn').hide();
+            $('#mobile-links').hide();
+        }
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop()) {
+                $('#totop').fadeIn();
+            } else {
+                $('#totop').fadeOut();
+            }
+        });
+
+        $("#totop").click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 500);
+        });
+    </script>
+
+</body>
+
+</html>
