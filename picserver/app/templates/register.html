@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+</head>
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+<body>
+    <main>
+
+        <section class="login">
+            <div class="user">
+                <a href="/">
+                    <img src="{% static 'images/images/avatarr.png' %}" alt="#UserAvatar">
+                    <h3>FOTO.com</h3>
+                </a>
+                <br>
+                <p id="pageHead">Registration Page</p>
+                <br>
+
+            </div>
+            <div class="name">
+                <label for="name">Name (Up to 15 characters):</label>
+                <br>
+
+
+
+                <form action="" method="post">
+
+
+
+
+                    <input type="text" id="name-input" name="name" required minlength="4" maxlength="15" size="25">
+                    
+                    <div class="Email">
+                        <label for="email">Email:</label>
+                        <br>
+                        <input type="email" id="email-input" name="email" required minlength="4" maxlength="30" size="25">
+                    </div>
+                    <div class="Password">
+                        <label for="name">Password (4 to 16 inputs):</label>
+                        <br>
+                        <input type="password" id="password-input" name="password" required minlength="4" maxlength="16"
+                            size="25">
+
+                    </div>
+                    <div class="Password-confirm">
+
+                        <label for="name">Confirm Password :</label>
+                        <br>
+                        <input type="password" id="password-conf" name="passwordconf" required minlength="4" maxlength="16"
+                            size="25">
+                    </div>
+                    <input type="submit" name="register" value="Register">
+                    <br>
+                    
+                    <button id="login-btn" onclick="location.href='../login/'">Already a user? Login from here</button>
+                    <br>
+                </form>
+
+
+
+            <a href="../pro/">
+                <div class="pro">
+                    <h5>Become A Pro User!</h2>
+                        <img src="{% static 'images/images/pro.png' %}" alt="">
+                </div>
+            </a>
+
+
+        </section>
+
+        <script>
+            
+        </script>
+
+        <section class="circle"></section>
+
+    </main>
+</body>
+
+</html>
