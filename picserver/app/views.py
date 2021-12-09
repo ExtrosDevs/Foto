@@ -10,7 +10,9 @@ from cryptography.fernet import Fernet
 from django.db.models import Q
 
 from .form import userForm, userLoginForm
-# Create your views here.
+
+import numpy as np
+# Create your ssviews here.
 
 
 def sendEmail(request):
@@ -46,51 +48,59 @@ def api(request):
 
 def Home(request):
     data = None
+    user = None
     if request.session.get('userName', None):
         user = User.objects.get(userName = request.session['userName'])
-        tags = user.tagsLike.all()[:5]
-        imagesByTag = Image.objects.filter(tags__in= tags)
-        ls = []
-        for i in imagesByTag.values_list('id'):
-            ls.append(i[0])
-        custom = 5
-        if len(imagesByTag ) < 5:
-            custom = len(imagesByTag)
-        randomIndeces = random.sample(ls, custom) 
-        imagesByTag = Image.objects.filter(id__in=imagesByTag.values_list('id'))
-        imagesByTag = imagesByTag.filter(id__in=randomIndeces)
+        tags = user.tagsLike.all()
+        ls = None
+        if tags.exists():
+            imagesByTag = Image.objects.filter(tags__in= tags)
 
-        data = imagesByTag
+            ls = np.array(imagesByTag.values_list('id'))
+            np.random.shuffle(ls)
+            ls = ls[:4]
+        else :
+            ls = np.array([[1]])
+            images = Image.objects.all().values_list('id')
+            arr = np.array(images)
+            np.random.shuffle(arr)
+            ls = arr[:5]
+     
+        imagesByLikes = Image.objects.all().order_by('-likes')
+        lst = np.array(imagesByLikes.values_list('id'))
+        np.random.shuffle(lst)
+        ls = np.concatenate([ls, lst[:5]], axis=0)
 
-        imagesByLikes = Image.objects.filter(~Q(id__in=imagesByTag.values_list('id'))).order_by('-likes')[:random.randrange(6)]
+        imagesByDate = Image.objects.order_by('-imageDate')
+        lst = np.array(imagesByDate.values_list('id'))[:7]
+        np.random.shuffle(lst)
+        ls = np.concatenate([ls, lst[:5]], axis=0)
 
-        data = data | imagesByLikes
 
-        imagesByDate = Image.objects.filter(~Q(id__in=data.values_list('id')))
-        imagesByDate = imagesByDate.order_by('-imageDate')[:random.randrange(6)]
+        imagesByFollowing = Image.objects.filter(user__id__in=user.following.values_list('id')).order_by('-imageDate')
 
-        data = data | imagesByDate
+        lst = np.array(imagesByFollowing.values_list('id'))[:7]
+        np.random.shuffle(lst)
+        ls = np.concatenate([ls, lst[:5]], axis=0)
 
-        imagesByFollowing = Image.objects.filter(~Q(id__in=data.values_list('id')))
-        imagesByFollowing = imagesByFollowing.filter(user__id__in=user.following.values_list('id'))[:random.randrange(6)]
-
-        data = data | imagesByFollowing
-    if request.method=="POST":
-        if request.POST.get('logout'):
-            user = User.objects.get(userName = request.session['userName'])
-            user.userstatus = False
-            user.save()
-            request.session['userName'] = ''
-            HttpResponseRedirect('/')
+        ls= np.unique(ls)
+        data = Image.objects.filter(id__in=ls)
+   
+    else:
+        images = Image.objects.all().values_list('id')
+        arr = np.array(images)
+        np.random.shuffle(arr)
+        imgs = Image.objects.filter(id__in=arr[:15])
+        data = imgs
     if request.method=='GET':
         if request.GET.get('search'):  
             ser = request.GET['search'].strip()
             imgs = Image.objects.all()
             tags = Tag.objects.filter(tagName__contains=ser)
             imgs = imgs.filter(tags__in=tags)
-            return render(request, 'index.html', {'data':imgs})
-
-    return render(request, 'index.html', {'data':data})
+            return render(request, 'index.html', {'data':imgs, 'user':user})
+    ourpicks = Image.objects.filter(inOurPicks=True)
+    return render(request, 'index.html', {'data':data,  'ourpicks':ourpicks, 'user':user})
 
 def userProfile(request, username):
     print('ss')
@@ -108,15 +118,14 @@ def imageView(request, id):
         user.tagsLike.add(*image.tags.all())
         user.save()
 
-    return render(request, 'imageView.html', {'img':image})
+    return render(request, 'photo.html', {'img':image})
 
 
 def register(request):
    
     if request.method == 'POST':
-        # print(request.POST.get('userName'))
-        form = userForm(request.POST)
-        if form.is_valid():
+        form = request.POST
+        if form.get('register'):
             isUserExists = User.objects.filter(userName = form.cleaned_data['userName'].strip()).exists()
             isEmailExists = User.objects.filter(userEmail = form.cleaned_data['userEmail'].strip()).exists()
             if isUserExists or isEmailExists:
@@ -127,12 +136,12 @@ def register(request):
                 if isEmailExists:
                     err += 'email'
                 return render(request, 'login.html' ,{'form':form, 'error':'the'+err+'is already exists'})
-            if form.cleaned_data['password'] != form.cleaned_data['conformPassword']:
+            if form['password'] != form['passwordconf']:
                  return render(request, 'login.html' ,{'form':form, 'error':'password not match '})
             else:
-                request.session['username'] = form.cleaned_data['userName']
-                request.session['email'] = form.cleaned_data['userEmail']
-                request.session['password'] = form.cleaned_data['password']
+                request.session['username'] = form['name']
+                request.session['email'] = form['email']
+                request.session['password'] = form['password']
                 code = ''
                 for i in range(6):
                     code += str(random.randrange(0,10))
@@ -144,27 +153,33 @@ def register(request):
 
     else:     
         form =userForm()
-    return render(request, 'login.html' ,{'form':form})
+    return render(request, 'register.html' ,{'form':form})
 def login(request):
        
     if request.method == 'POST':
-        # print(request.POST.get('userName'))
-        form = userLoginForm(request.POST)
-        if form.is_valid():
-            user =  User.objects.get(userEmail =  form.cleaned_data['userEmail'].strip())
-
-            if user != None:
-                if  form.cleaned_data['password'] == user.userPassword:
-                    request.session['userEmail'] = user.userEmail
-                    request.session['userName'] = user.userName
-                    user.userstatus = True
-                    user.save()
+        form = request.POST
+        if form.get('login'):
+            user =  User.objects.filter(userEmail =  form['email'].strip())
+            if user.exists():
+                if  form['password'] == user[0].userPassword:
+                    print('login ')
+                    request.session['userEmail'] = user[0].userEmail
+                    request.session['userName'] = user[0].userName
+                    user[0].userstatus = True
+                    user[0].save()
                     return HttpResponseRedirect('/')
-
+        if form.get('forgetpass'):
+            user =  User.objects.filter(userEmail =  form['email'].strip())
+            if user.exists():
+                send_mail('change password', 'not supported yet',EMAIL_HOST_USER, [user[0].userEmail])
                 
-    else:     
-        form =userLoginForm()
-    return render(request, 'login.html' ,{'form':form})
+    return render(request, 'login.html' )
+def logout(request):
+    user = User.objects.get(userName= request.session['userName'])
+    request.session['userEmail'] = ''
+    request.session['userName'] = ''
+    user.userstatus = False
+    return HttpResponseRedirect('/')
 def activate(request):
     if request.session['codeAct'] == '':
         return HttpResponseRedirect('/')
@@ -191,7 +206,8 @@ def dashBoard(request):
         print(chats)
         return render(request,'dashBoard.html', {'user':user, 'chats':chats})
     return HttpResponseRedirect('/')
-
+def pro(request):
+    return render(request, 'Pro.html')
 def addImage(request):
     if request.session.get('userName', None):
         user = User.objects.get(userName=request.session['userName'])
@@ -274,7 +290,7 @@ def responseDataJson(request, id):
             print(chat)
             if request.FILES :
                 file =request.FILES['file']
-                if file.size < 40000 and (file.name.endswith('.png') or file.name.endswith('.jpg')):
+                if file.size < 4000000 and (file.name.endswith('.png') or file.name.endswith('.jpg')):
                     img = ChatImage()
                     img.image =request.FILES['file']
                     img.user = User.objects.get(userName = request.session['userName'])
@@ -298,7 +314,7 @@ def imageApi(request):
         images.append({'id':i.id,'img':i.image.url})
     return JsonResponse(images, safe=False)
 def imageResponse(request, id):
-    if request.method == "POST":
+    if request.is_ajax:
         if request.session['userName']:
             o = Image.objects.get(id=id)
             # user= User.objects.get(userName= request.session['userName'])
@@ -312,4 +328,7 @@ def imageResponse(request, id):
             o.save()
 
     return HttpResponseRedirect('/')
-    
+def resLike(request, id):
+    image = Image.objects.get(id=id)
+    print('s')
+    return JsonResponse({'likes':image.likes})

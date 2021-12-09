@@ -1,30 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
+    {% load static %}
 </head>
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
 <body>
-    
-    <form action="" method="POST">
-        {% csrf_token %}
-        username : 
-        {{ form.userName }}
-        <br>
-        email:
-        {{ form.userEmail }}
-        <br>
-        password: 
-        {{ form.password}}
-        <br>
-        confrom password: 
-        {{ form.conformPassword }}
-        <br>
-        <input type="submit" value="create">
-    </form>
-    {{ error }}
-    
+
+
+
+    <main>
+
+
+        <section class="login">
+            <div class="user">
+                <a href="/index.html">
+                    <img src="{% static 'images/images/avatarr.png' %}" alt="#UserAvatar">
+                    <h3>FOTO.com</h3>
+                </a>
+                <br>
+                <p id="pageHead">Login Page</p>
+                <br>
+
+
+
+                <form id="forgot-pass" action="" method="post">
+                    {% csrf_token %}
+
+                    <div class="Email">
+                        <label for="email">Email:</label>
+                        <br>
+                        <input type="email" id="email-input" name="email" required size="25">
+                    </div>
+                    <input type="submit" name="forgetpass" value="Forgot Password">
+
+                </form>
+
+                <form name="wisamo" id="main-form" action="" method="post">
+                    {% csrf_token %}
+                    <div class="Email">
+                        <label for="email">Email:</label>
+                        <br>
+                        <input type="email" id="email-input" name="email" required minlength="4" >
+                    </div>
+                    <div class="Password">
+                        <label for="name">Password (4 to 16 inputs):</label>
+                        <br>
+                        <input type="password" id="password-input" name="password" required minlength="4" maxlength="16"
+                            size="25">
+                        <br>
+                    </div>
+
+                    <input type="submit" name='login' value="Login">
+
+
+                </form>
+
+                <button id="forgot-btn" onclick="forgot()">forgot ppassword</button>
+                <br>
+
+                <button id="register-btn" onclick="location.href='../register/'">Not a user? Register from
+                    here</button>
+
+
+
+                <a href="pro/">
+                    <div class="pro">
+                        <h5>Become A Pro User!</h2>
+                            <img src="{% static 'images/images/pro.png' %}" alt="">
+                    </div>
+                </a>
+
+        </section>
+
+        <script>
+            function forgot() {
+                document.getElementById("forgot-pass").style.display = ('block');
+                document.getElementById("main-form").style.display = ('none');
+                document.getElementById("forgot-btn").style.display = ('none');
+                document.getElementById("pageHead").innerHTML = "Password reset Page";
+
+            }
+        </script>
+
+        <section class="circle"></section>
+
+    </main>
 </body>
+
 </html>

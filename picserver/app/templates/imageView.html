@@ -23,26 +23,6 @@
 
 
     
-    <script src="{% static 'script/jquery.js' %}"></script>
-    <script>
-    $.ajaxSetup({
-    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-    });
-    $('#form').submit(function(e){
-        e.preventDefault();
-        $('#tx').val(0)
-        console.log( $('#tx').val())
-        var data = new FormData($('form').get(0))
-        $.ajax({
-            type:'POST',
-            url: 'http://127.0.0.1:8000/imageResponse/{{img.id}}',
-            cache: false,
-            processData: false,
-            contentType: false,
-            data: data,
-        })
-       
-    })
-    </script>
+
 </body>
 </html>

@@ -1,30 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    {% load static %}
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
+
+    
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 </head>
-<body>
 
-    <img width="100" height="100" style="border-radius: 50%;" src="{{user.pic.url}}" alt="{{user.userName }}" srcset="">
-    <h3>username : {{user.userName }}</h3>
-    <h3>email : {{user.userEmail}}</h3>
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header-toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
 
-    <a href="../upload/">addimage</a>
-    <br>
-    <a href="">my images</a>
-    <br>
-    <a href="">update images</a>
-    <br>
-    <a href="">settings</a>
-    <br>
-    <h3>chats</h3>
-    {% for chat in chats %}
-        {{ chat }}
-    {% endfor %}
+        <div class="header-img">
+
+            <!--Profile pci img-->
+            <form action="" method="get">
+                <img src="{{ user.pic.url }}" alt="ss">
+            </form>
+        </div>
+    </header>
+
+    <div class="left-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="#" class="nav-logo">
+                    <i class='bx bx-layer nav-logo-icon'></i>
+                    <span class="nav-logo-name">Foto</span>
+                </a>
+
+                <div class="nav-list">
+                    <a href="#Dashboard" class="nav-link" data-div="div-one">
+                        <i class='bx bxs-grid-alt nav-icon'></i>
+                        <span class="nav-name">Dashboard</span>
+                    </a>
+
+                    <a href="#Gallery" class="nav-link" data-div="div-two">
+                        <i class='bx bxs-folder-open nav-icon'></i>
+                        <span class="nav-name">My Gallery</span>
+                    </a>
+
+                    <a href="#Messages" class="nav-link" data-div="div-three">
+                        <i class='bx bxs-message-alt-dots nav-icon'></i>
+                        <span class="nav-name">Messages</span>
+                    </a>
+
+                    <a href="#Pro" class="nav-link" data-div="div-four">
+                        <i class='bx bxs-bolt-circle nav-icon'></i>
+                        <span class="nav-name">Pro</span>
+                    </a>
+
+                    <a href="#Settings" class="nav-link" data-div="div-five">
+                        <i class='bx bxs-wrench nav-icon'></i>
+                        <span class="nav-name">Settings</span>
+                    </a>
+
+                    <a href="#Support" class="nav-link" data-div="div-six">
+                        <i class='bx bx-support nav-icon'></i>
+                        <span class="nav-name">Support</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <a href="../logout/" class="nav-link">
+                <i class='bx bxs-log-in nav-icon'></i>
+                <span class="nav-name">Log out</span>
+            </a>
+
+        </nav>
+    </div>
+
+    <!--Profile tabs content-->
+    <div class="my-stuff">
+
+        <!--I will do that late, a quik peak on all stats-->
+        <div class="div-one content">
+            Dashboard
+        </div>
+
+        <div class="div-two  content">
+            Gallery
+            <div>
+
+                <!--#UserUploadedImages-->
+                <form action="" method="get">
+                    My Uploades
+                </form>
+            </div>
+            <div>
+
+                <!--#UserLikes-->
+                <form action="" method="get">
+                    My Likes
+                </form>
+            </div>
+        </div>
+
+        <div class="div-three content">
+
+            <!--#Users to chat with(we will see how it's done)-->
+            <form action="" method="get">
+                Messages
+            </form>
+            <div>
+                <!--#UserChat-->
+                <form action="" method="get">
+                    My Chat view
+                </form>
+            </div>
+        </div>
+
+
+        <div class="div-four content">
+            <h4 style="margin-bottom: 20px;">Current user : <form style="margin: 0;" action="" method="get">#userType
+                </form>
+            </h4>
+            <h3 style="margin-bottom: 10px;">You have <form style="margin: 0;" action="" method="get">#userPoints</form>
+                Points .</h3>
+            <h4>Earn 100 points to become a Pro User! </h4>
+            <h5>Keep uploading to earn points.</h5>
+            <div class="pricing">
+
+                <h3>PRICING SOON</h3>
+                <div class="money">
+                    <h2>$</h2>
+                </div>
+                <a href="./Pro.html">Learn More</a>
+            </div>
+        </div>
+
+        <div class="div-five content">
+            <div>
+                Wellcome Back
+                <form id="name-form" action="" method="get">
+                    #UserName
+                </form>
+            </div>
+            <a class="change" data-div="div-1" href="#change-username">Change Username</a>
+            <a class="change" data-div="div-2" href="#change-password">Change Password</a>
+            <a class="change" data-div="div-3" href="#change-pic">Change Profile Pic</a>
+
+            <div class="div-1 settings">
+                <!--Change username form-->
+                <form action="" method="post">
+                    <h5>New Username</h5>
+                    <input type="text">
+                    <input type="submit">
+                </form>
+            </div>
+            <div class="div-2 settings">
+                <!--Change password form-->
+                <form action="" method="post">
+                    <h5>New Password</h5>
+                    <input type="text">
+                    <input type="submit">
+                </form>
+            </div>
+            <div class="div-3 settings">
+                <!--Change profile picture form-->
+                <form action="" method="post">
+                    <h5>New Pic</h5><br>
+                    <label for="img">Select image: </label>
+                    <input type="file" id="img" name="img" accept=".jpg, .png">
+                    <input type="submit">
+                </form>
+            </div>
+
+
+
+        </div>
+        <div class="div-six content">
+            Support <p>You can contact the support team either via <br><a style="display: block" href="#"
+                    class="nav-link" data-div="div-three">LiveChat</a>or by the Email below</p>
+            <p>support@foto.com </p>
+        </div>
+    </div>
+
+
+    <script src="{% static 'script/jquery.js' %}"></script>
+
+    
+    <script>
+        $('.nav-link').click(function () {
+            var contClass = $(this).data('div');
+            $('.content').hide().filter('.' + contClass).show()
+        })
+        $('.change').click(function () {
+            var contClass = $(this).data('div');
+            $('.settings').hide().filter('.' + contClass).show()
+        })
+    </script>
+
+    <script>
+        /*===== SHOW NAVBAR  =====*/
+        const showNavbar = (toggleId, navId, bodyId, headerId) => {
+            const toggle = document.getElementById(toggleId),
+                nav = document.getElementById(navId),
+                bodypd = document.getElementById(bodyId),
+                headerpd = document.getElementById(headerId)
+
+            // Validate that all variables exist
+            if (toggle && nav && bodypd && headerpd) {
+                toggle.addEventListener('click', () => {
+                    // show navbar
+                    nav.classList.toggle('show')
+                    // change icon
+                    toggle.classList.toggle('bx-x')
+                    // add padding to body
+                    bodypd.classList.toggle('body-pd')
+                    // add padding to header
+                    headerpd.classList.toggle('body-pd')
+                })
+            }
+
+        }
+
+        showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+
+        /*===== LINK ACTIVE  =====*/
+        const linkColor = document.querySelectorAll('.nav-link')
+
+        function colorLink() {
+            if (linkColor) {
+                linkColor.forEach(l => l.classList.remove('active'))
+                this.classList.add('active')
+            }
+        }
+        linkColor.forEach(l => l.addEventListener('click', colorLink))
+    </script>
 
 
 </body>
+
 </html>

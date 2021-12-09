@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import activate,sendEmail,appi,api,imageApi,register, Home,login,requestDataJson,chatView,responseDataJson,imageApi,imageView,imageResponse,userProfile, chatGen,dashBoard, addImage
+from .views import activate,sendEmail,appi,api,imageApi,register, Home,login,requestDataJson,chatView,responseDataJson,imageApi,imageView,imageResponse,userProfile, chatGen,dashBoard, addImage,logout,pro,resLike
 
 urlpatterns = [
     path('email/', sendEmail),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('profile/<str:username>', userProfile),
 
     path('login/', login),
+    path('logout/', logout),
     path('register/', register),
     path('activate/', activate),
 
@@ -26,4 +27,6 @@ urlpatterns = [
 
     path('dashboard/',dashBoard),
     path('upload/', addImage),
+    path('pro/', pro),
+    path('resLike/<int:id>',resLike)
 ]

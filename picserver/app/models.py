@@ -65,6 +65,8 @@ class Image(models.Model):
     likes = models.IntegerField(default=0 )
     usernameLikes = models.JSONField(default=[{}])
     private = models.BooleanField(default=False)
+    inOurPicks = models.BooleanField(default=False)
+
     def __str__(self):
         return f"{self.imageTitle[:15]}   ,{self.id}"
 

@@ -1,83 +1,105 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-#pageHead{
-    color: dimgray;
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+#pageHead {
+  color: #d7d7d7eb;
 }
-.name{
-    animation: appear;
-    animation-duration: 1s;
-display: none;}
-
-.Password-confirm{
+#forgot-pass{
     display: none;
-    animation: appear;
-    animation-duration: 1s;
 }
-.Password{
+#main-form{
+    display: block;
     
-    animation: appear;
-    animation-duration: 1s;
 }
-.Email{
-    animation: appear;
-    animation-duration: 1s;
+main {
+    min-height: 100vh;
+    background: var(--dark-gradient-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  }
+
+.bottons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#finalRegister{
-    animation: appear;
-    animation-duration: 1s;
-    display: none;
+
+.Password-confirm {
+  animation: appear;
+  animation-duration: 1s;
 }
-#finalLogin{
-    animation: appear;
-    animation-duration: 1s;
-    display: block;
+.Password {
+  animation: appear;
+  animation-duration: 1s;
+}
+.Email {
+  animation: appear;
+  animation-duration: 1s;
 }
 
-#login-btn{
-    animation: appear;
-    animation-duration: 1s;
-    display: none;
+#finalRegister {
+  animation: appear;
+  animation-duration: 1s;
 }
-#register-btn{
-    animation: appear;
-    animation-duration: 1s;
-    display: block;
+#finalLogin {
+  animation: appear;
+  animation-duration: 1s;
+}
+
+#login-btn {
+  animation: appear;
+  animation-duration: 1s;
+}
+#register-btn {
+  animation: appear;
+  animation-duration: 1s;
+}
+.login{
+  background: var(--dark-gradient-color);
 }
 
 input {
-    border: 0px solid #01a388;
-    width: 100%;
-    padding: 1em;
-    box-sizing: border-box;
-    border-radius: .5em;
-    margin-top: 1.2em;
-    margin-bottom: 1em;
-
-}
-.button{
-    width: 20px;
-}
-button{
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: bold;
     color: dimgray;
     border: 0px solid white;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 1em;
     box-sizing: border-box;
-    border-radius: .5em;
+    border-radius: 0.5em;
     margin-top: 1.2em;
     margin-bottom: 1em;
     cursor: pointer;
 }
 
-@media(max-width: 500px) {
-.login{
-    width: 100%;
+.button {
+  width: 20px;
 }
+button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: dimgray;
+  border: 0px solid white;
+  padding: 1em;
+  box-sizing: border-box;
+  border-radius: 0.5em;
+  margin-top: 1.2em;
+  margin-bottom: 1em;
+  cursor: pointer;
 }
 
-.pro{
-    bottom: 5px;
+@media (max-width: 500px) {
+  .login {
+    width: 100%;
+  }
+}
+
+.pro {
+  bottom: 5px;
+}
+.pro img{
+  right: 30%;
 }
