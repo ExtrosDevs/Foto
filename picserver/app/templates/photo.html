@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo by</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/photo-page.css' %}">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <header class="site-header">
+        <h1 class="mt-0 mb-15"><span class="color-primary">Foto</span> <span class="color-gray-2">.com</span></h1>
+        <h5 style="text-align: center;" >Click the photo to see in full screen</h5>
+    </header>
+    
+    <div class="float-container">
+        <div id="image" class="float-child">
+            <img src="{{ img.image.url }}" alt="">
+        </div>
+
+        <div id="info" class="float-child">
+            <div id="info" class="float-child2">
+                <div>User Name:</div>
+                <div>Upload Date:</div>
+                <div>Views Count:</div>
+                <div>Like Count:</div>
+                <div>Description:</div>
+                <div>Tags:</div>
+                
+
+            </div>
+            <div class="info-line">{{ img.user.userName}}</div>
+            <div class="info-line">{{ img.imageDate }}</div>
+            <div class="info-line">#ViewsCount</div>
+            <div class="info-line" id="likes">{{ img.likes }}</div>
+            <div class="info-line">{{ img.imageDesc }}</div>
+            <div class="info-line">
+                {% for i in img.tags.all %}
+                {{i}},
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="video-container">
+    </div>
+
+
+
+    <div class="container">
+        <nav class="main-nav">
+            <ul id="inline-popups">
+                <li class="nav-item">
+                    <a href="#download" class="nav-link">
+                        Download
+                        <i class='bx bxs-download'></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#Like" onclick="submit()" class="nav-link">
+                        Like
+                        <i class='bx bxs-like'></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#comment" class="nav-link">
+                        Comment
+                        <i class='bx bxs-comment'></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">
+                        About
+                        <i class='bx bxs-info-square'></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#report" class="nav-link">
+                        Report
+                        <i class='bx bxs-error-alt'></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
+
+
+
+
+
+
+    </div>
+    <script src="{% static 'script/jquery.js' %}"></script>
+    <script>
+        like = 0
+    function submit(){
+        $.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+    var formData = new FormData();
+    formData.append("csrfmiddlewaretoken", $('input[name=csrfmiddlewaretoken]').val());
+        $.ajax({
+            type:'POST',
+            url: 'http://127.0.0.1:8000/imageResponse/{{img.id}}',
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        })
+  
+    // let url = 'https://www.breakingbadapi.com/api/characters/2'
+    load()
+}
+
+function load(){
+    let url = 'http://127.0.0.1:8000/resLike/{{img.id}}';
+    var req = new XMLHttpRequest();
+    req.open('GET', url)
+    req.onload = function(){
+        let data = JSON.parse(req.responseText)
+        $('#likes').text(data['likes'])
+    }
+req.send()  
+}
+    </script>
+</body>
+
+</html>
