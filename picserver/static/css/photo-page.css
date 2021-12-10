@@ -146,6 +146,7 @@ margin-bottom: 14px;
 }
 
 #image {
+    visibility: visible;
     width: 40%;
     height: 50%;
     overflow: hidden;
@@ -153,9 +154,40 @@ margin-bottom: 14px;
 
     margin-right: 10px;
 }
- #info{
 
- }
+
+
+.full{
+ display: none;
+ justify-content: center;
+ align-items: center;
+  position: absolute;
+  z-index: 7000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: contain;
+  background-repeat: no-repeat no-repeat;
+  background-position: center center;
+  color: black;
+  background:rgba(0, 0, 0, .8) ;
+ 
+
+  
+  
+
+}
+#full{
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 8000;
+    max-height: 100vh;
+    max-width: 100vw;
+   
+}
+
 
 
 .info-line {
