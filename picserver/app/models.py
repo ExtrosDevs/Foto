@@ -63,6 +63,8 @@ class Image(models.Model):
     
     imageDate = models.DateField(default=datetime.now())
     likes = models.IntegerField(default=0 )
+    views = models.IntegerField(default=0)
+
     usernameLikes = models.JSONField(default=[{}])
     private = models.BooleanField(default=False)
     inOurPicks = models.BooleanField(default=False)
