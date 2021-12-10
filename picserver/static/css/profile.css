@@ -162,6 +162,7 @@ a {
 
 .active {
     color: var(--white-color);
+    
 }
 
 .active::before {
@@ -234,6 +235,9 @@ a {
     display: block;
 
 }
+.div-three content{
+width: 100%;
+}
 
 .div-five a {
     color: wheat;
@@ -266,6 +270,70 @@ input {
 #name-form {
     margin: 0;
     margin-bottom: 10px;
+}
+
+
+
+
+
+.chat-container {
+    width: 100%;
+    padding: 10px;
+    float: left;
+    padding-bottom: 20px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: .5rem;
+}
+
+.contacts {
+    float: left;
+    width: 30%;
+    border-right: solid 5px white;
+    border-radius: 1.5rem;
+
+}
+.chat-name{
+    color: white;
+    width: 90%;
+    overflow: hidden;
+    padding: 10px;
+    margin: 10px;
+    border: solid 1px wheat;
+    border-radius: .5rem;
+    font-weight: bold;
+    background-color: black;
+}
+.chat-name:hover{
+    color: black;
+    background-color: gainsboro;
+    cursor: pointer;
+   
+
+
+}
+.chat-name.active{
+    animation: pop;
+    animation-duration: .5s;
+    color: black;
+    background-color: wheat;
+}
+
+.chat-box{
+    width: 69%;
+    float: right;
+    border-left: solid 5px white;
+    border-radius: 1.5rem;
+    text-align: left;
+}
+.text{
+    margin: 10px;
+}
+
+
+
+@keyframes pop{
+    from {font-size: 19px;}
+    to {font-size: 25;}
 }
 
 /* ===== MEDIA QUERIES=====*/
