@@ -43,7 +43,7 @@
             </div>
             <div class="info-line">{{ img.user.userName}}</div>
             <div class="info-line">{{ img.imageDate }}</div>
-            <div class="info-line">#ViewsCount</div>
+            <div class="info-line">{{ img.views }}</div>
             <div class="info-line" id="likes">{{ img.likes }}</div>
             <div class="info-line">{{ img.imageDesc }}</div>
             <div class="info-line">
@@ -123,7 +123,6 @@
     {% else %}
     <script>
         $("#im").click(function () {
-            $(".full").toggle();
             $("body").css({
                 filter: "blur(8px)"
             });

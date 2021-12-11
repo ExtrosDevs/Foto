@@ -116,7 +116,11 @@ def imageView(request, id):
     if request.session.get('userName'):
         user = User.objects.get(userName=request.session['userName'])
         user.tagsLike.add(*image.tags.all())
+        
+        image.views += 1
+        image.save()
         user.save()
+
 
     return render(request, 'photo.html', {'img':image})
 
