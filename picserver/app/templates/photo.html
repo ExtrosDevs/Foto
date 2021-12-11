@@ -9,118 +9,171 @@
     <link rel="stylesheet" href="/picserver/static/css/profile.css">
     <link rel="stylesheet" href="/picserver/static/css/main.css">
     <link rel="stylesheet" href="{% static 'css/photo-page.css' %}">
-    <link rel="stylesheet" href="/static/css/photo-page.css"> <!--DELETE LATER-->
+    <link rel="stylesheet" href="/static/css/photo-page.css">
+    <!--DELETE LATER-->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 
-<body>
+<div class="overlay">
+</div>
+<div class="overlay-content">
+    <p id="overlay-p">SampleText</p>
+
+    <input id="close-btn" type="button" value="Close">
+</div>
+
+<section id="search" class="search">
+    <h4>Search</h4>
+
+
+    <!--Search form-->
+    <form action="" method="get">
+        <input type="search" name="search" id="search">
+    </form>
+</section>
+
+<!-- Top navigation -->
+<div class="topnav">
+
+    <!-- Centered link -->
+    <div class="topnav-centered">
+        <a id="home-btn" href="/" class="active">Home</a>
+        <a id="mobile-btn" href="#" class="active">Expand Menu</a>
+    </div>
+    <form action="" method="post">
+        <!-- Left-aligned links (default) -->
+        {% if user %}
+        <a id="login-nav" href="logout/">Logout</a>
+        {% else %}
+        <a id="login-nav" href="login/">Login</a>
+        {% endif %}
+
+    </form>
+    <a id="contact-btn" href="#contact">Contact</a>
+
+    <!-- Right-aligned links -->
+    <div class="topnav-right">
+        <a id="search-btn" href="#search">Search</a>
+        <a id="about-btn" href="#">About</a>
+    </div>
+
     <header class="site-header">
         <h1 class="mt-0 mb-15"><span class="color-primary">Foto</span> <span class="color-gray-2">.com</span></h1>
         <h5 id="ccc" style="text-align: center;">Click the photo to see in full screen</h5>
     </header>
 
-    <div id="float" class="float-container">
-        <div id="image" class="float-child">
-            <img id="im" src="/static/images/images/land.jpg" alt=""> <!--DELETE LATER-->
-            <img id="im" src="{{ img.image.url }}" alt="">
-        </div>
-        <div class="full">
-            <img id="full" src="/static/images/images/land.jpg" alt=""> <!--DELETE LATER-->
-            <img id="full" src="{{ img.image.url }}" alt=""> 
+    <body>
 
-        </div>
+        
 
+</div>
 
-
-        <div id="info" class="float-child">
-            <div id="info" class="float-child2">
-                <div>User Name:</div>
-                <div>Upload Date:</div>
-                <div>Views Count:</div>
-                <div>Like Count:</div>
-                <div>Description:</div>
-                <div>Tags:</div>
-
-
-            </div>
-            <div class="info-line">{{ img.user.userName}}</div>
-            <div class="info-line">{{ img.imageDate }}</div>
-            <div class="info-line">{{ img.views }}</div>
-            <div class="info-line" id="likes">{{ img.likes }}</div>
-            <div class="info-line">{{ img.imageDesc }}</div>
-            <div class="info-line">
-                {% for i in img.tags.all %}
-                {{i}},
-                {% endfor %}
-            </div>
-
-        </div>
+<div id="float" class="float-container">
+    <div id="image" class="float-child">
+        <img id="im" src="/static/images/images/land.jpg" alt="">
+        <!--DELETE LATER-->
+        <img id="im" src="{{ img.image.url }}" alt="">
+    </div>
+    <div class="full">
+        <img id="full" src="/static/images/images/land.jpg" alt="">
+        <!--DELETE LATER-->
+        <img id="full" src="{{ img.image.url }}" alt="">
 
     </div>
 
 
-    <div id="video-container">
-    </div>
+
+    <div id="info" class="float-child">
+        <div id="info" class="float-child2">
+            <div>User Name:</div>
+            <div>Upload Date:</div>
+            <div>Views Count:</div>
+            <div>Like Count:</div>
+            <div>Description:</div>
+            <div>Tags:</div>
 
 
-
-    <div class="container">
-        <nav class="main-nav">
-            <ul id="inline-popups">
-                <li class="nav-item">
-
-
-                    <a id="download-link" href="{{ img.image.url }}" download class="nav-link">
-                        Download
-                        <i class='bx bxs-download'></i>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#Like" onclick="submit()" class="nav-link">
-                        Like
-                        <i class='bx bxs-like'></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#comment" class="nav-link">
-                        Comment
-                        <i class='bx bxs-comment'></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">
-                        About
-                        <i class='bx bxs-info-square'></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#report" class="nav-link">
-                        Report
-                        <i class='bx bxs-error-alt'></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-
-
-
-
-
-
+        </div>
+        <div class="info-line">{{ img.user.userName}}</div>
+        <div class="info-line">{{ img.imageDate }}</div>
+        <div class="info-line">{{ img.views }}</div>
+        <div class="info-line" id="likes">{{ img.likes }}</div>
+        <div class="info-line">{{ img.imageDesc }}</div>
+        <div class="info-line">
+            {% for i in img.tags.all %}
+            {{i}},
+            {% endfor %}
+        </div>
 
     </div>
-    <div onmousedown="return false">asd</div>
 
-    
-    
-    
-    <script src="{% static 'script/jquery.js' %}"></script>
-    <script src="/static/script/jquery.js"></script> <!--DELETE LATER-->
-    {% if user  %} <!--Uncomment Later-->
-    <!--
+</div>
+
+
+<div id="video-container">
+</div>
+
+
+
+<div class="container">
+    <nav class="main-nav">
+        <ul id="inline-popups">
+            <li class="nav-item">
+
+
+                <a id="download-link" href="{{ img.image.url }}" download class="nav-link">
+                    Download
+                    <i class='bx bxs-download'></i>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#Like" onclick="submit()" class="nav-link">
+                    Like
+                    <i class='bx bxs-like'></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#comment" class="nav-link">
+                    Comment
+                    <i class='bx bxs-comment'></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#about" class="nav-link">
+                    About
+                    <i class='bx bxs-info-square'></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#report" class="nav-link">
+                    Report
+                    <i class='bx bxs-error-alt'></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+
+
+
+
+
+
+</div>
+<div onmousedown="return false">asd</div>
+
+
+
+
+<script src="{% static 'script/jquery.js' %}"></script>
+<!--DELETE LATER-->
+<script src="/static/script/jquery.js"></script>
+{% if user  %}
+<!--Uncomment Later-->
+<!--
         <script>
             $("#im").click(function () {
                 $(".full").toggle();
@@ -131,45 +184,52 @@
         </script>
 
     -->
-    {% else %}
-  <script src="/static/script/nonuser.js"></script>
-    {% endif %}
+{% else %}
+<!--DELETE LATER-->
+<script src="/static/script/nonuser.js"></script>
+<script src="{% static 'script/nonuser.js' %}"></script>
+
+{% endif %}
+
+<!--DELETE LATER-->
+<script src="/static/script/navbar.js"></script>
+<script src="{% static 'script/navbar.js' %}"></script>
 
 
-    <script>
-        like = 0
+<script>
+    like = 0
 
-        function submit() {
-            $.ajaxSetup({
-                data: {
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-            });
-            var formData = new FormData();
-            formData.append("csrfmiddlewaretoken", $('input[name=csrfmiddlewaretoken]').val());
-            $.ajax({
-                type: 'POST',
-                url: 'http://127.0.0.1:8000/imageResponse/{{img.id}}',
-                data: {
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-            })
+    function submit() {
+        $.ajaxSetup({
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+        });
+        var formData = new FormData();
+        formData.append("csrfmiddlewaretoken", $('input[name=csrfmiddlewaretoken]').val());
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8000/imageResponse/{{img.id}}',
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+        })
 
-            // let url = 'https://www.breakingbadapi.com/api/characters/2'
-            load()
+        // let url = 'https://www.breakingbadapi.com/api/characters/2'
+        load()
+    }
+
+    function load() {
+        let url = 'http://127.0.0.1:8000/resLike/{{img.id}}';
+        var req = new XMLHttpRequest();
+        req.open('GET', url)
+        req.onload = function () {
+            let data = JSON.parse(req.responseText)
+            $('#likes').text(data['likes'])
         }
-
-        function load() {
-            let url = 'http://127.0.0.1:8000/resLike/{{img.id}}';
-            var req = new XMLHttpRequest();
-            req.open('GET', url)
-            req.onload = function () {
-                let data = JSON.parse(req.responseText)
-                $('#likes').text(data['likes'])
-            }
-            req.send()
-        }
-    </script>
+        req.send()
+    }
+</script>
 </body>
 
 </html>
