@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/picserver/static/css/profile.css">
     <link rel="stylesheet" href="/picserver/static/css/main.css">
     <link rel="stylesheet" href="{% static 'css/photo-page.css' %}">
+    <link rel="stylesheet" href="/static/css/photo-page.css"> <!--DELETE LATER-->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
@@ -21,10 +22,12 @@
 
     <div id="float" class="float-container">
         <div id="image" class="float-child">
+            <img id="im" src="/static/images/images/land.jpg" alt=""> <!--DELETE LATER-->
             <img id="im" src="{{ img.image.url }}" alt="">
         </div>
         <div class="full">
-            <img id="full" src="{{ img.image.url }}" alt="">
+            <img id="full" src="/static/images/images/land.jpg" alt=""> <!--DELETE LATER-->
+            <img id="full" src="{{ img.image.url }}" alt=""> 
 
         </div>
 
@@ -68,7 +71,7 @@
                 <li class="nav-item">
 
 
-                    <a href="{{ img.image.url }}" download class="nav-link">
+                    <a id="download-link" href="{{ img.image.url }}" download class="nav-link">
                         Download
                         <i class='bx bxs-download'></i>
                     </a>
@@ -109,37 +112,30 @@
 
 
     </div>
- 
+    <div onmousedown="return false">asd</div>
 
-    {% if user  %}
-    <script>
-        $("#im").click(function () {
-            $(".full").toggle();
-        });
-        $(".full").click(function () {
-            $(".full").toggle();
-        });
-    </script>
+    
+    
+    
+    <script src="{% static 'script/jquery.js' %}"></script>
+    <script src="/static/script/jquery.js"></script> <!--DELETE LATER-->
+    {% if user  %} <!--Uncomment Later-->
+    <!--
+        <script>
+            $("#im").click(function () {
+                $(".full").toggle();
+            });
+            $(".full").click(function () {
+                $(".full").toggle();
+            });
+        </script>
+
+    -->
     {% else %}
-    <script>
-        $("#im").click(function () {
-            $("body").css({
-                filter: "blur(8px)"
-            });
-        });
-        $(".full").click(function () {
-            $(".full").toggle();
-            $("body").css({
-                filter: "blur(0px)"
-            });
-        });
-        document.addEventListener('contextmenu', event => event.preventDefault());
-    </script>
+  <script src="/static/script/nonuser.js"></script>
     {% endif %}
 
 
-
-    <script src="{% static 'script/jquery.js' %}"></script>
     <script>
         like = 0
 

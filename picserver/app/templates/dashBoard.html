@@ -12,7 +12,8 @@
 
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/profilel.css' %}">
-    
+    <link rel="stylesheet" href="/static/css/profilel.css"> <!--DELETE LATER-->
+
 </head>
 
 <body id="body-pd">
@@ -108,7 +109,7 @@
         </div>
 
         <div class="div-three content">
-            
+
             <div class="chat-container">
                 <div id="contacts" class="contacts">
 
@@ -117,18 +118,43 @@
                     <div class="chat-name">lux</div>
 
 
+                </div>
+                <div id="gg" class="add-contact">
+                    <h2>+</h2>
 
-
+                    <h5 id="add-text">Add new contact!</h5>
                 </div>
 
                 <div class="chat-box">
-                    <div class="text">Blah blah</div>
-                    <div class="text">test</div>
-                    <div class="text"> blah</div>
-                    <div class="text"> blyat</div>
-                    <div class="text"> hi</div>
-                    <div class="text"> gg</div>
-                    
+                    <div class="box2">
+
+                        <div class="container">
+                            <img src="/static/images/images/avatarr.png" alt="Avatar" style="width:100%;">
+                            <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, repellat.</div>
+                        </div>
+                        <div class="container">
+                            <img src="/static/images/images/avatarr.png" alt="Avatar" style="width:100%;">
+                            <div id="bubble"><img src="/static/images/images/land.jpg" alt=""></div>
+                        </div>
+
+                        <div class="container darker">
+                            <img src="/static/images/images/avatarr.png" alt="Avatar" style="width:100%;">
+                            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti eos soluta iusto at
+                                dolorem illo fugiat illum aspernatur a voluptatem, reiciendis, perferendis odit
+                                cupiditate
+                                doloribus.</div>
+                        </div>
+                    </div>
+
+
+                    <div class="write">
+                        <form action="" method="post" id="write">
+                            <input type="text">
+                            <input type="file" id="myFile" name="filename">
+                            <input type="submit" value="Send">
+                        </form>
+
+                    </div>
                 </div>
 
 
@@ -205,9 +231,12 @@
 
         <script src="{% static 'script/jquery.js' %}"></script>
         <script src="{% static 'script/dashboard.js' %}"></script>
-        
+        <script src="/static/script/dashbard.js"></script> <!--DELETE LATER-->
+        <script src="/static/script/jquery.js"></script> <!--DELETE LATER-->
 
-      
+
+
+
         <script>
             $('.nav-link').click(function () {
                 var contClass = $(this).data('div');
