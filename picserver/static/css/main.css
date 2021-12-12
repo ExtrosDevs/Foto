@@ -164,6 +164,7 @@ body::-webkit-scrollbar-track{
 }
 body::-webkit-scrollbar-thumb{
   background: #65dfc9;
+  border-radius: 10rem;
 }
 
 
@@ -400,6 +401,18 @@ a {
   border-radius: 50%;
   visibility: visible;
 }
+
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background-color: #0584de;
+  color: #fff;
+}
+
+
+
 
 
 #totop {

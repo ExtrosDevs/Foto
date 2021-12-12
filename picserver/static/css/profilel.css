@@ -163,7 +163,7 @@ a {
 
 .active {
     color: var(--white-color);
-    
+
 }
 
 .active::before {
@@ -236,8 +236,24 @@ a {
     display: block;
 
 }
-.div-three content{
-width: 100%;
+
+.div-two content {
+    display: block;
+
+}
+
+.gallery {
+    display: inline-block;
+}
+
+.div-three content {
+
+    width: 100%;
+}
+
+.div-four content {
+    display: inline-block;
+    width: 100%;
 }
 
 .div-five a {
@@ -247,6 +263,59 @@ width: 100%;
 .settings {
     display: none;
 }
+
+.top-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* fraction*/
+    border: 4px solid #dedede;
+    color: #110c11;
+    background-color: #f1f1f1;
+    border-radius: .8em;
+    padding: 10px;
+    margin: 15px;
+    font-weight: bold;
+    word-wrap: normal;
+    max-width: 1200px;
+
+}
+
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* fraction*/
+    border: 4px solid #dedede;
+    color: #110c11;
+    background-color: white;
+    border-radius: .8em;
+    margin: 15px;
+    font-weight: bold;
+    word-wrap: normal;
+    max-width: 1200px;
+}
+
+.gallery-container img {
+    max-width: 98%;
+}
+
+.uploads,
+.viewed,
+.likes {
+    overflow: scroll;
+    display: inline-block;
+    max-height: 600px;
+    overflow-x: hidden;
+}
+
+.uploads img,
+.viewed img,
+.likes img {
+    border: 5px outset white;
+    border-image-slice: 1;
+}
+
+
 
 
 form {
@@ -267,7 +336,17 @@ input {
     margin-bottom: .2em;
     cursor: pointer;
     margin-left: 20px;
-  }
+}
+
+#upload {
+    margin: 0;
+}
+
+#rainbow {
+
+    animation: rainbow 2.5s linear;
+    animation-iteration-count: infinite;
+}
 
 #name-form {
     margin: 0;
@@ -279,13 +358,15 @@ input {
 
 
 .chat-container {
-    width: 100%;
+    max-width: 80%;
+    display: inline-block;
     padding: 10px;
-    float: left;
     padding-bottom: 20px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: .5rem;
     position: relative;
+
+
 }
 
 .contacts {
@@ -293,17 +374,18 @@ input {
     width: 30%;
     border-right: solid 5px white;
     border-radius: 1.5rem;
-    max-height: 450px ;
+    max-height: 450px;
     overflow: scroll;
     overflow-x: hidden;
-    
+
 }
-.contacts::-webkit-scrollbar{
+
+.contacts::-webkit-scrollbar {
     display: none;
-  }
+}
 
 
-  .add-contact{
+.add-contact {
     width: 40px;
     height: 40px;
     border: solid 5px;
@@ -312,23 +394,24 @@ input {
     bottom: 10%;
     left: 13%;
     text-align: center;
-  }
-  .add-contact:hover{
-      cursor: pointer;
-  }
+}
 
-  #add-text{
-      animation: appear;
-      animation-duration: 1s;
-      position: absolute;
-      left: -290%;
-      margin-top: 20px;
+.add-contact:hover {
+    cursor: pointer;
+}
+
+#add-text {
+    animation: appear;
+    animation-duration: 1s;
+    position: absolute;
+    left: -290%;
+    margin-top: 20px;
     text-align: center;
-      width: 200px;
-  }
+    width: 200px;
+}
 
 
-.chat-name{
+.chat-name {
     color: white;
     width: 90%;
     overflow: hidden;
@@ -339,53 +422,67 @@ input {
     font-weight: bold;
     background-color: black;
 }
-.chat-name:hover{
+
+.chat-name:hover {
     color: black;
     background-color: gainsboro;
     cursor: pointer;
-   
+
 
 
 }
-.chat-name.active{
+
+.chat-name.active {
     animation: pop;
     animation-duration: .5s;
     color: black;
     background-color: wheat;
 }
 
-.chat-box{
+.chat-box {
 
     max-width: 69%;
     float: right;
 }
-.box2{
+
+.box2 {
     border-left: solid 5px white;
     border-radius: 1.5rem;
     word-wrap: normal;
-    max-height: 600px ;
+    max-height: 600px;
     overflow: scroll;
     overflow-x: hidden;
-    
+
 }
-.box2::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: .5rem;
-  }
-  .box2::-webkit-scrollbar-track{
-      background: #00172c;
-  }
-  .box2::-webkit-scrollbar-thumb{
+}
+
+::-webkit-scrollbar-track {
+    background: #00172c;
+}
+
+::-webkit-scrollbar-thumb {
     background: wheat;
-  }
-  
-  .write{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top:15px;
-      padding: 0px;
-  }
-  #write{
+    border-radius: 10px;
+}
+
+.uploads::-webkit-scrollbar-track,
+.likes::-webkit-scrollbar-track,
+.viewed::-webkit-scrollbar-track {
+    background: #0b1e29;
+}
+
+.write {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 0px;
+}
+
+#write {
     margin: 0px;
 }
 
@@ -398,48 +495,115 @@ input {
     margin: 15px;
     font-weight: bold;
     word-wrap: normal;
-  }
-  
-  .darker {
+}
+
+.darker {
     border-color: whitesmoke;
     background-color: #ccc;
-  }
-  
-  .container::after {
+}
+
+.container::after {
     content: "";
     clear: both;
     display: table;
-  }
-  
-  .container img {
+}
+
+.container img {
     float: left;
     max-width: 60px;
     width: 100%;
     margin-right: 20px;
     border-radius: 50%;
-  }
-  
-  .darker img {
+}
+
+.darker img {
     float: right;
     margin-left: 20px;
-    margin-right:0;
-  }
-  #bubble img{
-      margin-top: 5px;
-        max-width: 600px;
-        border-radius: 5px;
-
-  }
-
-
-
-@keyframes pop{
-    from {font-size: 19px;}
-    to {font-size: 25;}
+    margin-right: 0;
 }
-@keyframes appear{
-    from {opacity: 0;}
-    to {opacity: 1;}
+
+#bubble img {
+    margin-top: 5px;
+    max-width: 600px;
+    border-radius: 5px;
+
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+
+@keyframes pop {
+    from {
+        font-size: 19px;
+    }
+
+    to {
+        font-size: 25;
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rainbow {
+
+    100%,
+    0% {
+        color: rgb(255, 0, 0);
+    }
+
+    8% {
+        color: rgb(255, 127, 0);
+    }
+
+    16% {
+        color: rgb(255, 255, 0);
+    }
+
+    25% {
+        color: rgb(127, 255, 0);
+    }
+
+    33% {
+        color: rgb(0, 255, 0);
+    }
+
+    41% {
+        color: rgb(0, 255, 127);
+    }
+
+    50% {
+        color: rgb(0, 255, 255);
+    }
+
+    58% {
+        color: rgb(0, 127, 255);
+    }
+
+    66% {
+        color: rgb(0, 0, 255);
+    }
+
+    75% {
+        color: rgb(127, 0, 255);
+    }
+
+    83% {
+        color: rgb(255, 0, 255);
+    }
+
+    91% {
+        color: rgb(255, 0, 127);
+    }
 }
 
 /* ===== MEDIA QUERIES=====*/

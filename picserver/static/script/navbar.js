@@ -12,7 +12,7 @@
         $("#contact-btn").click(function () {
             $(".overlay").fadeToggle("", function () {});
             $(".overlay-content").fadeToggle("", function () {});
-            document.getElementById("overlay-p").innerHTML = "Email: support@foto.com";
+            document.getElementById("overlay-p").innerHTML = "Email: ExtrosDevs@gmail.com <br> <br> Github: github.com/ExtrosDevs";
         });
         $("#close-btn").click(function () {
             $(".overlay").fadeToggle("", function () {});
