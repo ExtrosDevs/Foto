@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/static/css/main.css"><!--D LATER-->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/upload.css">
+    <!--D LATER-->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/upload.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Upload</title>
 </head>
 
 <body>
@@ -52,10 +55,18 @@
                 <textarea placeholder="Description" required name="desc" id="" cols="30" rows="10"></textarea>
                 <textarea placeholder="Insert tags bch" name="tags" id="" cols="30" rows="10"></textarea>
             </div>
-            <input style="margin: 5px 0 10px ;" type="submit" value="upload" name="imageForm">
+            <input id="tee" onclick="play()" style="margin: 5px 0 10px ;" type="submit" value="upload" name="imageForm">
         </form>
+        <audio id="audio" src="/static/sound/Wololo.ogg"></audio>
+        ti-ripple-button(text="I'm a ripple button")
 
     </div>
+    <script>
+        function play() {
+            var audio = document.getElementById("audio");
+            audio.play();
+        }
+    </script>
 </body>
 
 </html>

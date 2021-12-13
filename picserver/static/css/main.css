@@ -164,7 +164,7 @@ body::-webkit-scrollbar-track{
 }
 body::-webkit-scrollbar-thumb{
   background: #65dfc9;
-  border-radius: 10rem;
+  border-radius: .25rem;
 }
 
 

@@ -234,6 +234,7 @@ a {
 
 .div-one content {
     display: block;
+    
 
 }
 
@@ -311,8 +312,9 @@ a {
 .uploads img,
 .viewed img,
 .likes img {
-    border: 5px outset white;
     border-image-slice: 1;
+    background: linear-gradient(to left, #597a6f, #044e788f);
+    border: 5px solid rgba(255, 255, 255, 0);
 }
 
 
@@ -343,7 +345,8 @@ input {
 }
 
 #rainbow {
-
+    margin: 0;
+    margin-right: 4px;
     animation: rainbow 2.5s linear;
     animation-iteration-count: infinite;
 }
@@ -465,7 +468,7 @@ input {
 
 ::-webkit-scrollbar-thumb {
     background: wheat;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .uploads::-webkit-scrollbar-track,
@@ -473,6 +476,94 @@ input {
 .viewed::-webkit-scrollbar-track {
     background: #0b1e29;
 }
+
+.uploads::-webkit-scrollbar-thumb,
+.likes::-webkit-scrollbar-thumb,
+.viewed::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+}
+
+.dash-container {
+    margin-top: 20px;
+    padding-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "views-today views-last-month"
+        "most-viewed latest-upload"
+        "points revenue";
+}
+.dash-container h3 {
+margin-top: 10px;
+}
+
+
+.views-today {
+    grid-area: views-today;
+}
+
+.views-last-month {
+    grid-area: views-last-month;
+}
+
+.most-viewed {
+    grid-area: most-viewed;
+}
+
+.latest-upload {
+    grid-area: latest-upload;
+}
+
+.points {
+    grid-area: points;
+}
+
+.revenue {
+    grid-area: revenue;
+}
+.revenue, .points, .latest-upload, .most-viewed,.views-last-month,.views-today {
+    background: black;
+    height: 25vh;
+    margin: 5px;
+    margin-bottom: 15px;
+    border: solid 2px;
+    border-radius: 1rem;
+    position: relative;
+    
+}
+
+.peak {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+.peak img{
+    margin-top: 30px;
+    max-width: 250px;
+    border: solid 2px wheat;
+    border-radius: .6rem;
+  }
+.peak div{
+    margin: 10px;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #0fa,
+    0 0 82px #0fa,
+    0 0 92px #0fa,
+    0 0 102px #0fa,
+    0 0 151px #0fa;
+
+  }
+
+
 
 .write {
     display: flex;
